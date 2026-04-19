@@ -13,10 +13,10 @@
 
 def sum_even_numbers(arr: list[int]) -> int:
 
+    if not isinstance(arr, list): raise TypeError("Нужен массив целых чисел")
+
     if not arr:
         return 0
-
-    if not isinstance(arr, list): raise TypeError("Нужен массив целых чисел")
 
     sum_even = 0
     for i in arr:
@@ -101,8 +101,3 @@ def output_iter(sequence: list[int], target: int)-> list[int]:
                 return [i, j]
 
     return []
-
-
-arr = [8, -5, 7, 1, 6, 9]
-tar = 7
-print(output_iter(arr, tar))
