@@ -39,15 +39,15 @@ def sum_even_numbers(arr: list[int]) -> int:
 # Формат: число типа int.
 
 # Входные данные:
-# Список целых чисел, каждое число в диапазоне от 1 до 2*104.
+# Список целых чисел, каждое число в диапазоне от 1 до 2*10**4.
 # Формат: последовательность целых чисел типа list.
 
 def repeating_number(arr: list[int]) -> int:
 
+    if not isinstance(arr, list): raise TypeError("Нужен массив целых чисел")
+
     if not arr:
         return 0
-
-    if not isinstance(arr, list): raise TypeError("Нужен массив целых чисел")
 
     arr.sort()
     repeat_elem = arr[0]
@@ -85,13 +85,14 @@ def repeating_number(arr: list[int]) -> int:
 # Входные данные: nums = [3, 2, 4], target = 6
 # Выходные данные: [1, 2]
 
-#VAR 1
 def output_iter(sequence: list[int], target: int)-> list[int]:
+
+    if not isinstance(sequence, list): raise TypeError("Нужен массив целых чисел")
+
+    if not isinstance(target, int): raise TypeError("Нужно целое число")
 
     if not sequence:
         return 0
-
-    if not isinstance(sequence, list): raise TypeError("Нужен массив целых чисел")
 
     lengts = len(sequence)
 
