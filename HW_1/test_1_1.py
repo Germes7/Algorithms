@@ -1,6 +1,5 @@
 from HW_1 import sum_even_numbers
 import pytest
-import pip
 
 def test_not_arr():
     assert sum_even_numbers([]) == 0
