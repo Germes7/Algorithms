@@ -24,24 +24,26 @@ def factorial(n: int) -> int:
 
     return mult
 
-n_values = [1, 5, 10, 20, 50, 100, 150, 200, 300, 500]
-times = []
+if __name__ == "__main__":
 
-for n in n_values:
-    start_time = time.perf_counter()
-    factorial(n)
-    end_time = time.perf_counter()
+    n_values = [1, 5, 10, 20, 50, 100, 150, 200, 300, 500]
+    times = []
 
-    times.append(end_time - start_time)
+    for n in n_values:
+        start_time = time.perf_counter()
+        factorial(n)
+        end_time = time.perf_counter()
 
-plt.figure(figsize=(10, 6))
-plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+        times.append(end_time - start_time)
 
-plt.title('Зависимость времени выполнения от n (Факториал числа)')
-plt.xlabel('Значение n')
-plt.ylabel('Время выполнения (секунды)')
-plt.grid(True)
-plt.show()
+    plt.figure(figsize=(10, 6))
+    plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+
+    plt.title('Зависимость времени выполнения от n (Факториал числа)')
+    plt.xlabel('Значение n')
+    plt.ylabel('Время выполнения (секунды)')
+    plt.grid(True)
+    plt.show()
 
 # Задача №2
 # Напишите функцию fibonacci(n), которая принимает одно целое число n и возвращает список чисел Фибоначчи
@@ -67,25 +69,26 @@ def fibonacci(n: int) -> list[int]:
 
     return fib_arr
 
+if __name__ == "__main__":
 
-n_values = [1, 10, 100, 500, 1000, 2000, 5000, 10000, 100000]
-times = []
+    n_values = [1, 10, 100, 500, 1000, 2000, 5000, 10000, 100000]
+    times = []
 
-for n in n_values:
-    start_time = time.perf_counter()
-    fibonacci(n)
-    end_time = time.perf_counter()
+    for n in n_values:
+        start_time = time.perf_counter()
+        fibonacci(n)
+        end_time = time.perf_counter()
 
-    times.append(end_time - start_time)
+        times.append(end_time - start_time)
 
-plt.figure(figsize=(10, 6))
-plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+    plt.figure(figsize=(10, 6))
+    plt.plot(n_values, times, marker='o', linestyle='-', color='b')
 
-plt.title('Зависимость времени выполнения от n (Фибоначчи)')
-plt.xlabel('Значение n')
-plt.ylabel('Время выполнения (секунды)')
-plt.grid(True)
-plt.show()
+    plt.title('Зависимость времени выполнения от n (Фибоначчи)')
+    plt.xlabel('Значение n')
+    plt.ylabel('Время выполнения (секунды)')
+    plt.grid(True)
+    plt.show()
 
 
 # Задача №3
@@ -111,24 +114,26 @@ def count_ones(n: int) -> int:
 
     return count
 
-n_values = [10, 1000, 10000, 100000, 1000000, 100000000, 100000000]
-times = []
+if __name__ == "__main__":
 
-for n in n_values:
-    start_time = time.perf_counter()
-    count_ones(n)
-    end_time = time.perf_counter()
+    n_values = [10, 1000, 10000, 100000, 1000000, 100000000, 100000000]
+    times = []
 
-    times.append(end_time - start_time)
+    for n in n_values:
+        start_time = time.perf_counter()
+        count_ones(n)
+        end_time = time.perf_counter()
 
-plt.figure(figsize=(10, 6))
-plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+        times.append(end_time - start_time)
 
-plt.title('Зависимость времени выполнения от n (Двоичное представление числа)')
-plt.xlabel('Значение n')
-plt.ylabel('Время выполнения (секунды)')
-plt.grid(True)
-plt.show()
+    plt.figure(figsize=(10, 6))
+    plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+
+    plt.title('Зависимость времени выполнения от n (Двоичное представление числа)')
+    plt.xlabel('Значение n')
+    plt.ylabel('Время выполнения (секунды)')
+    plt.grid(True)
+    plt.show()
 
 
 # Задача №4
@@ -163,22 +168,24 @@ def palindrome_num(num: int) -> bool:
 
     return True
 
-n_values = [101, 1010101, 10101010101, 10101010101010101010101, 10101010101010101010101010101010101010101010101,
-            10101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101]
-times = []
+if __name__ == "__main__":
 
-for num in n_values:
-    start_time = time.perf_counter()
-    palindrome_num(num)
-    end_time = time.perf_counter()
+    n_values = [101, 1010101, 10101010101, 10101010101010101010101, 10101010101010101010101010101010101010101010101,
+                10101010101010101010101010101010101010101010101010101010101010101010101010101010101010101010101]
+    times = []
 
-    times.append(end_time - start_time)
+    for num in n_values:
+        start_time = time.perf_counter()
+        palindrome_num(num)
+        end_time = time.perf_counter()
 
-plt.figure(figsize=(10, 6))
-plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+        times.append(end_time - start_time)
 
-plt.title('Зависимость времени выполнения от n (Палиндром числа)')
-plt.xlabel('Значение n')
-plt.ylabel('Время выполнения (секунды)')
-plt.grid(True)
-plt.show()
+    plt.figure(figsize=(10, 6))
+    plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+
+    plt.title('Зависимость времени выполнения от n (Палиндром числа)')
+    plt.xlabel('Значение n')
+    plt.ylabel('Время выполнения (секунды)')
+    plt.grid(True)
+    plt.show()
