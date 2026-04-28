@@ -11,6 +11,7 @@ import random
 def max_in_range(arr: list[int], start: int, end: int) ->tuple[int, int, int]:
 
     if not isinstance(arr, list): raise TypeError("Нужен массив")
+    if not arr: raise ValueError("Массив не должен быть пустым")
     if not isinstance(start, int): raise TypeError("Нужно целочисленное значение")
     if start >= len(arr) or start < 0: raise ValueError("Индекс Start не может быть большим либо меньшим длины списка")
     if not isinstance(end, int): raise TypeError("Нужно целочисленное значение")
@@ -51,6 +52,63 @@ if __name__ == "__main__":
     plt.plot(n_values, times, marker='o', linestyle='-', color='b')
 
     plt.title('Зависимость времени поиска максимума от размера диапазона')
+    plt.xlabel('Количество элементов (n)')
+    plt.ylabel('Время выполнения (секунды)')
+    plt.grid(True)
+    plt.show()
+
+
+# Задача №2
+# Напишите функцию rotate_and_reverse(arr, k), которая принимает на вход список и число k, и возвращает новый
+# список, в котором сначала происходит циклический сдвиг вправо на k позиций, а затем инверсия всего списка.
+
+def rotate_reverse(arr: list[int], k: int) -> list[int]:
+
+    if not isinstance(arr, list): raise TypeError("Нужен массив")
+    if not arr: raise ValueError("Массив не должен быть пустым")
+    if not isinstance(k, int): raise TypeError("Нужно целочисленное значение")
+    if k < 0: raise ValueError("Число должно быть большим либо равным нулю")
+
+    arr_1 = arr.copy()
+    k %= len(arr_1)
+    lenht = (len(arr_1) - 1)
+
+    for _ in range(k):
+        buf = arr_1[lenht]
+
+        for i in range(lenht, 0, -1):
+            arr_1[i] = arr_1[i - 1]
+        arr_1[0] = buf
+
+    for i in range(len(arr_1) // 2):
+
+        arr_1[i], arr_1[lenht - i] = arr_1[lenht - i], arr_1[i]
+
+
+    return arr_1
+
+# O(n) = 1 + 1 + 1 + 1 + 1 + 1 + (n*k) + 1 + 1 + 1 + 1 + 1 = 11 + (n*k) => O(n**2)
+
+if __name__ == "__main__":
+
+    n_values = [10, 100, 1000, 5000, 10000]
+    start = 3
+    end = 8
+    times = []
+
+    for n in n_values:
+
+        test_arr = [random.randint(0, 1000) for _ in range(n)]
+        start_time = time.perf_counter()
+        rotate_reverse(test_arr, n // 10)
+        end_time = time.perf_counter()
+
+        times.append(end_time - start_time)
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+
+    plt.title('Сложность сдвига и реверса')
     plt.xlabel('Количество элементов (n)')
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
