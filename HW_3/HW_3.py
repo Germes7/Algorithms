@@ -2,14 +2,14 @@ import time
 import matplotlib.pyplot as plt
 import random
 
+
 # Задача №1
 # Напишите функцию max_in_range(arr, start, end), которая принимает на вход список и два индекса start и end,
 # и возвращает максимальный элемент и две координаты (относительную и абсолютную) между start и end включительно.
 # Абсолютная координата - отсчитывается от начала всего массива.
 # Относительная координата - отсчитывается от начала рассматриваемого диапазона.
 
-def max_in_range(arr: list[int], start: int, end: int) ->tuple[int, int, int]:
-
+def max_in_range(arr: list[int], start: int, end: int) -> tuple[int, int, int]:
     if not isinstance(arr, list): raise TypeError("Нужен массив")
     if not arr: raise ValueError("Массив не должен быть пустым")
     if not isinstance(start, int): raise TypeError("Нужно целочисленное значение")
@@ -30,6 +30,7 @@ def max_in_range(arr: list[int], start: int, end: int) ->tuple[int, int, int]:
 
     return (max, i_max, coord)
 
+
 #  O(n) = (1+1+1+1) + 1 + 1 + n(1+1+1+1+1+1+1+1) + 1 + 1 + 1 => O(n) + 2 + O(n) + 3 = O(2n) + 5 = O(n)
 
 if __name__ == "__main__":
@@ -40,7 +41,6 @@ if __name__ == "__main__":
     times = []
 
     for n in n_values:
-
         test_arr = [random.randint(0, 1000) for _ in range(n)]
         start_time = time.perf_counter()
         max_in_range(test_arr, 0, n - 1)
@@ -63,7 +63,6 @@ if __name__ == "__main__":
 # список, в котором сначала происходит циклический сдвиг вправо на k позиций, а затем инверсия всего списка.
 
 def rotate_reverse(arr: list[int], k: int) -> list[int]:
-
     if not isinstance(arr, list): raise TypeError("Нужен массив")
     if not arr: raise ValueError("Массив не должен быть пустым")
     if not isinstance(k, int): raise TypeError("Нужно целочисленное значение")
@@ -81,11 +80,10 @@ def rotate_reverse(arr: list[int], k: int) -> list[int]:
         arr_1[0] = buf
 
     for i in range(len(arr_1) // 2):
-
         arr_1[i], arr_1[lenht - i] = arr_1[lenht - i], arr_1[i]
 
-
     return arr_1
+
 
 # O(n) = 1 + 1 + 1 + 1 + 1 + 1 + (n*k) + 1 + 1 + 1 + 1 + 1 = 11 + (n*k) => O(n**2)
 
@@ -97,7 +95,6 @@ if __name__ == "__main__":
     times = []
 
     for n in n_values:
-
         test_arr = [random.randint(0, 1000) for _ in range(n)]
         start_time = time.perf_counter()
         rotate_reverse(test_arr, n // 10)
@@ -109,6 +106,61 @@ if __name__ == "__main__":
     plt.plot(n_values, times, marker='o', linestyle='-', color='b')
 
     plt.title('Сложность сдвига и реверса')
+    plt.xlabel('Количество элементов (n)')
+    plt.ylabel('Время выполнения (секунды)')
+    plt.grid(True)
+    plt.show()
+
+
+# Задача №3
+# Напишите функцию reverse_even_elements(arr), которая принимает на вход список и возвращает новый список,
+# в котором только четные числа идут в обратном порядке, а нечетные остаются на своих местах.
+
+def revers_even_elements(arr: list[int]) -> list[int]:
+    if not isinstance(arr, list): raise TypeError("Нужен массив")
+    if not arr: raise ValueError("Массив не должен быть пустым")
+
+    arr_1 = arr.copy()
+    lenght_arr_1 = len(arr_1)
+    arr_even = []
+
+    for i in range(lenght_arr_1):
+        if arr_1[i] % 2 == 0:
+            arr_even.append(arr_1[i])
+
+    lenht_arr_even = len(arr_even) - 1
+    for i in range(len(arr_even) // 2):
+        arr_even[i], arr_even[lenht_arr_even - i] = arr_even[lenht_arr_even - i], arr_even[i]
+
+    i_count = 0
+    for i in range(lenght_arr_1):
+
+        if arr_1[i] % 2 == 0:
+            arr_1[i] = arr_even[i_count]
+            i_count += 1
+
+    return arr_1
+
+
+#  O(n) = 1 + 1 + 1 + 1 + 1 + (2n) + 1 + 1 + (2n / 2) + 1 +1 + 1 + 1 + 1 + (2n) = 2n + n + 2n => O(n)
+
+if __name__ == "__main__":
+
+    n_values = [10, 100, 1000, 5000, 10000, 100000, 500000, 1000000, 10000000]
+    times = []
+
+    for n in n_values:
+        test_arr = [random.randint(0, 1000) for _ in range(n)]
+        start_time = time.perf_counter()
+        revers_even_elements(test_arr)
+        end_time = time.perf_counter()
+
+        times.append(end_time - start_time)
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+
+    plt.title('Сложность реверса от четных чисел')
     plt.xlabel('Количество элементов (n)')
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
