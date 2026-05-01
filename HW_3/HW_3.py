@@ -1,4 +1,6 @@
 import time
+import sys
+sys.set_int_max_str_digits(10000000)
 import matplotlib.pyplot as plt
 import random
 
@@ -196,3 +198,26 @@ def plus_one(arr: list[int]) -> list[int]:
     return arr_result
 
 
+# O(n) = 1 + 1 + (2n) + 1 + 1 + 1 + (2n +1 + 1 + 1) + 2n = 5 + 2n + 5n + 2n => O(n)
+
+if __name__ == "__main__":
+
+    n_values = [10, 100, 1000, 5000, 10000, 100000]
+    times = []
+
+    for n in n_values:
+        test_arr = [random.randint(0, 9) for _ in range(n)]
+        test_arr[0] = random.randint(1, 9)
+        start_time = time.perf_counter()
+        plus_one(test_arr)
+        end_time = time.perf_counter()
+        times.append(end_time - start_time)
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+
+    plt.title('Зависимость времени выполнения функции от количества цифр')
+    plt.xlabel('Количество элементов (n)')
+    plt.ylabel('Время выполнения (секунды)')
+    plt.grid(True)
+    plt.show()
