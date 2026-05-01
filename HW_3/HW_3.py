@@ -14,8 +14,10 @@ import random
 def max_in_range(arr: list[int], start: int, end: int) -> tuple[int, int, int]:
     if not isinstance(arr, list): raise TypeError("Нужен массив")
     if not arr: raise ValueError("Массив не должен быть пустым")
+    if type(start) is bool: raise TypeError("Требуется число а не булевое значение")
     if not isinstance(start, int): raise TypeError("Нужно целочисленное значение")
     if start >= len(arr) or start < 0: raise ValueError("Индекс Start не может быть большим либо меньшим длины списка")
+    if type(end) is bool: raise TypeError("Требуется число а не булевое значение")
     if not isinstance(end, int): raise TypeError("Нужно целочисленное значение")
     if end >= len(arr) or end < start: raise ValueError("Индекс End не может быть большим либо меньшим длины списка\n"
                                                         "либо меньше Start")
@@ -32,7 +34,7 @@ def max_in_range(arr: list[int], start: int, end: int) -> tuple[int, int, int]:
 
     return (max, i_max, coord)
 
-
+print(max_in_range([1, 2, 3, 4, 5, 6], 0, 1))
 #  O(n) = (1+1+1+1) + 1 + 1 + n(1+1+1+1+1+1+1+1) + 1 + 1 + 1 => O(n) + 2 + O(n) + 3 = O(2n) + 5 = O(n)
 
 if __name__ == "__main__":
