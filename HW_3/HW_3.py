@@ -33,29 +33,29 @@ def max_in_range(arr: list[int], start: int, end: int) -> tuple[int, int, int]:
 
 #  O(n) = (1+1+1+1) + 1 + 1 + n(1+1+1+1+1+1+1+1) + 1 + 1 + 1 => O(n) + 2 + O(n) + 3 = O(2n) + 5 = O(n)
 
-if __name__ == "__main__":
-
-    n_values = [10, 100, 1000, 5000, 10000, 50000, 100000, 1000000]
-    start = 3
-    end = 8
-    times = []
-
-    for n in n_values:
-        test_arr = [random.randint(0, 1000) for _ in range(n)]
-        start_time = time.perf_counter()
-        max_in_range(test_arr, 0, n - 1)
-        end_time = time.perf_counter()
-
-        times.append(end_time - start_time)
-
-    plt.figure(figsize=(10, 6))
-    plt.plot(n_values, times, marker='o', linestyle='-', color='b')
-
-    plt.title('Зависимость времени поиска максимума от размера диапазона')
-    plt.xlabel('Количество элементов (n)')
-    plt.ylabel('Время выполнения (секунды)')
-    plt.grid(True)
-    plt.show()
+# if __name__ == "__main__":
+#
+#     n_values = [10, 100, 1000, 5000, 10000, 50000, 100000, 1000000]
+#     start = 3
+#     end = 8
+#     times = []
+#
+#     for n in n_values:
+#         test_arr = [random.randint(0, 1000) for _ in range(n)]
+#         start_time = time.perf_counter()
+#         max_in_range(test_arr, 0, n - 1)
+#         end_time = time.perf_counter()
+#
+#         times.append(end_time - start_time)
+#
+#     plt.figure(figsize=(10, 6))
+#     plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+#
+#     plt.title('Зависимость времени поиска максимума от размера диапазона')
+#     plt.xlabel('Количество элементов (n)')
+#     plt.ylabel('Время выполнения (секунды)')
+#     plt.grid(True)
+#     plt.show()
 
 
 # Задача №2
@@ -87,29 +87,29 @@ def rotate_reverse(arr: list[int], k: int) -> list[int]:
 
 # O(n) = 1 + 1 + 1 + 1 + 1 + 1 + (n*k) + 1 + 1 + 1 + 1 + 1 = 11 + (n*k) => O(n**2)
 
-if __name__ == "__main__":
-
-    n_values = [10, 100, 1000, 5000, 10000]
-    start = 3
-    end = 8
-    times = []
-
-    for n in n_values:
-        test_arr = [random.randint(0, 1000) for _ in range(n)]
-        start_time = time.perf_counter()
-        rotate_reverse(test_arr, n // 10)
-        end_time = time.perf_counter()
-
-        times.append(end_time - start_time)
-
-    plt.figure(figsize=(10, 6))
-    plt.plot(n_values, times, marker='o', linestyle='-', color='b')
-
-    plt.title('Сложность сдвига и реверса')
-    plt.xlabel('Количество элементов (n)')
-    plt.ylabel('Время выполнения (секунды)')
-    plt.grid(True)
-    plt.show()
+# if __name__ == "__main__":
+#
+#     n_values = [10, 100, 1000, 5000, 10000]
+#     start = 3
+#     end = 8
+#     times = []
+#
+#     for n in n_values:
+#         test_arr = [random.randint(0, 1000) for _ in range(n)]
+#         start_time = time.perf_counter()
+#         rotate_reverse(test_arr, n // 10)
+#         end_time = time.perf_counter()
+#
+#         times.append(end_time - start_time)
+#
+#     plt.figure(figsize=(10, 6))
+#     plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+#
+#     plt.title('Сложность сдвига и реверса')
+#     plt.xlabel('Количество элементов (n)')
+#     plt.ylabel('Время выполнения (секунды)')
+#     plt.grid(True)
+#     plt.show()
 
 
 # Задача №3
@@ -144,24 +144,55 @@ def revers_even_elements(arr: list[int]) -> list[int]:
 
 #  O(n) = 1 + 1 + 1 + 1 + 1 + (2n) + 1 + 1 + (2n / 2) + 1 +1 + 1 + 1 + 1 + (2n) = 2n + n + 2n => O(n)
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
+#
+#     n_values = [10, 100, 1000, 5000, 10000, 100000, 500000, 1000000, 10000000]
+#     times = []
+#
+#     for n in n_values:
+#         test_arr = [random.randint(0, 1000) for _ in range(n)]
+#         start_time = time.perf_counter()
+#         revers_even_elements(test_arr)
+#         end_time = time.perf_counter()
+#
+#         times.append(end_time - start_time)
+#
+#     plt.figure(figsize=(10, 6))
+#     plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+#
+#     plt.title('Сложность реверса от четных чисел')
+#     plt.xlabel('Количество элементов (n)')
+#     plt.ylabel('Время выполнения (секунды)')
+#     plt.grid(True)
+#     plt.show()
 
-    n_values = [10, 100, 1000, 5000, 10000, 100000, 500000, 1000000, 10000000]
-    times = []
+# Задача №4
+# Вам дано большое целое число, представленное в виде целочисленного массива digits, где каждая цифра
+# digits[i] — это i-я цифра этого числа. Цифры упорядочены слева направо от старшей значимости к младшей.
+# Большое целое число не содержит старших нулей.
+# Увеличьте большое целое число на единицу и верните результирующий массив digits.
+# Пример:
+# Input: array = [1, 2, 3, 6]
+# Output: [1, 2, 3, 7]
 
-    for n in n_values:
-        test_arr = [random.randint(0, 1000) for _ in range(n)]
-        start_time = time.perf_counter()
-        revers_even_elements(test_arr)
-        end_time = time.perf_counter()
+def plus_one(arr: list[int]) -> list[int]:
+    if not isinstance(arr, list): raise TypeError("Нужен массив")
+    if not arr: raise ValueError("Массив не должен быть пустым")
 
-        times.append(end_time - start_time)
+    str_arr = ""
+    for i in range(len(arr)):
+        str_arr += str(arr[i])
 
-    plt.figure(figsize=(10, 6))
-    plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+    int_arr = int(str_arr) + 1
 
-    plt.title('Сложность реверса от четных чисел')
-    plt.xlabel('Количество элементов (n)')
-    plt.ylabel('Время выполнения (секунды)')
-    plt.grid(True)
-    plt.show()
+    arr_result = []
+    while int_arr > 0:
+
+        i = int_arr % 10
+        arr_result.append(i)
+        int_arr //= 10
+
+    arr_result.reverse()  # Не стал расписывать через цикл реверс
+    return arr_result
+
+
