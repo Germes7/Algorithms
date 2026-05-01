@@ -34,7 +34,7 @@ def max_in_range(arr: list[int], start: int, end: int) -> tuple[int, int, int]:
 
     return (max, i_max, coord)
 
-print(max_in_range([1, 2, 3, 4, 5, 6], 0, 1))
+
 #  O(n) = (1+1+1+1) + 1 + 1 + n(1+1+1+1+1+1+1+1) + 1 + 1 + 1 => O(n) + 2 + O(n) + 3 = O(2n) + 5 = O(n)
 
 if __name__ == "__main__":
