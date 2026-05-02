@@ -69,6 +69,7 @@ if __name__ == "__main__":
 def rotate_reverse(arr: list[int], k: int) -> list[int]:
     if not isinstance(arr, list): raise TypeError("Нужен массив")
     if not arr: raise ValueError("Массив не должен быть пустым")
+    if type(k) is bool: raise TypeError("Должно быть не буллевое значение")
     if not isinstance(k, int): raise TypeError("Нужно целочисленное значение")
     if k < 0: raise ValueError("Число должно быть большим либо равным нулю")
 
