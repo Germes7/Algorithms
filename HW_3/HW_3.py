@@ -183,6 +183,12 @@ def revers_even_elements(arr: list[int]) -> list[int]:
 def plus_one(arr: list[int]) -> list[int]:
     if not isinstance(arr, list): raise TypeError("Нужен массив")
     if not arr: raise ValueError("Массив не должен быть пустым")
+    if len(arr) > 1 and arr[0] == 0: raise ValueError("Первый элемент не должен быть равен 0")
+    for i in arr:
+        if not isinstance(i, int) or type(i) is bool:
+            raise TypeError("Элементы списка, должны быть целыми числами")
+        if i < 0: raise ValueError("Цифры не могут быть отрицательными")
+        if i > 9: raise ValueError("Цифры должны иметь диапазон от 0 - 9")
 
     str_arr = ""
     for i in range(len(arr)):
