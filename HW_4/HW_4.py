@@ -6,7 +6,7 @@ import random
 from typing import Any
 sys.setrecursionlimit(10000)
 
-# Задача №1. Сортировка “Пузырька”
+# Задача №1. Сортировка “Пузырька”.
 # Напишите функцию, которая принимает на вход массив элементов, анонимную функцию key (задает ключ сортировки)
 # и анонимную функцию order_by (задает признак сортировки). Результатом функции должен быть отсортированный
 # массив элементов по методу сортировки “Пузырька”. Если переданный на вход массив пустой, выдать []
@@ -224,6 +224,49 @@ if __name__ == "__main__":
     plt.plot(n_values, times, marker='o', linestyle='-', color='b')
 
     plt.title('Тест функции sum_even с рекурсией')
+    plt.xlabel('Количество элементов (n)')
+    plt.ylabel('Время выполнения (секунды)')
+    plt.grid(True)
+    plt.show()
+
+
+# Задача №6. Переворот строки.
+# Напишите функцию reverse_string, которая принимает на вход строку и возвращает её перевёрнутую версию.
+# Используйте рекурсивный подход.
+# Если переданная на вход строка пустая, функция должна возвращать пустую строку.
+
+def reverse_string(text: str) -> str:
+    if not isinstance(text, str): raise TypeError("Нужна строка")
+    if len(text) == 0: return text
+
+    elem_sim = text[-1]
+    text = text[:-1]
+
+    return elem_sim + reverse_string(text)
+
+
+# O(n) = 1 + 1 + 1 + 1 +  n * (n - 1) => O(n2)
+
+if __name__ == "__main__":
+
+    import string
+
+    n_values = [10, 50, 100, 200, 400, 500, 1000, 2000, 4000, 7000]  # Осторожно с 9000, может быть долго
+    times = []
+
+    for n in n_values:
+
+        test_str = ''.join(random.choices(string.ascii_letters, k=n))
+        start_time = time.perf_counter()
+        reverse_string(test_str)
+        end_time = time.perf_counter()
+
+        times.append(end_time - start_time)
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+
+    plt.title('Тест функции переворот строки с рекурсией')
     plt.xlabel('Количество элементов (n)')
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
