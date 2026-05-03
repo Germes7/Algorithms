@@ -184,3 +184,47 @@ if __name__ == "__main__":
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
     plt.show()
+
+
+# Задача №5.
+# Напишите функцию recursive_sum, которая принимает на вход массив элементов и возвращает
+# сумму всех четных элементов массива. Если переданный на вход массив пустой, функции
+# должны возвращать 0.
+# Используйте рекурсивный подход.
+
+def recursive_sum_even(arr: list[int | float]) -> int | float:
+    if not isinstance(arr, list): raise TypeError("Нужен список")
+    if not arr: return 0
+
+    sum_elem = 0
+    if arr[0] % 2 == 0:
+        sum_elem = arr[0]
+
+    arr.pop(0)
+
+    return sum_elem + recursive_sum_even(arr)
+
+
+# O(n) = 1 + 1 + 1 + 1 + 1 + 1 + 1 + n * (n - 1) => O(n2)
+
+if __name__ == "__main__":
+
+    n_values = [10, 50, 100, 200, 400, 500, 1000, 2000, 4000, 7000, 9000]
+    times = []
+
+    for n in n_values:
+        test_arr = [random.randint(0, 1000) for _ in range(n)]
+        start_time = time.perf_counter()
+        recursive_sum_even(test_arr)
+        end_time = time.perf_counter()
+
+        times.append(end_time - start_time)
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+
+    plt.title('Тест функции sum_even с рекурсией')
+    plt.xlabel('Количество элементов (n)')
+    plt.ylabel('Время выполнения (секунды)')
+    plt.grid(True)
+    plt.show()
