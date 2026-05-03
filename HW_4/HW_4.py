@@ -271,3 +271,56 @@ if __name__ == "__main__":
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
     plt.show()
+
+
+# Задача №7. Проверка палиндрома.
+# Напишите функцию is_palindrome, которая принимает на вход строку и проверяет, является ли она
+# палиндромом (читается одинаково в обе стороны).
+# Используйте рекурсивный подход. Если переданная на вход строка пустая, функция должна возвращать True.
+
+def is_palindrome(text: str) -> bool:
+    if not isinstance(text, str): raise TypeError("Должна быть строка")
+    if len(text) == 0: return True
+    if len(text) == 1: return True
+
+    if text[0] == text[-1]:
+        text = text[1:]
+        text = text[:-1]
+    else: return False
+
+    return is_palindrome(text)
+
+
+# O(n) = 1 + 1 + 1 + 1 + 1 + 1 + 1 + n * (n - 1) => O(n2)
+
+if __name__ == "__main__":
+
+    import string
+
+    n_values = [10, 100, 500, 1000, 2000, 4000, 7000]
+    times_random = []
+    times_worst = []
+
+    for n in n_values:
+
+        test_str_1 = ''.join(random.choices(string.ascii_letters, k=n))
+        test_str_2 = test_str = 'a' * n
+
+        start = time.perf_counter()
+        is_palindrome(test_str_1)
+        times_random.append(time.perf_counter() - start)
+
+        start = time.perf_counter()
+        is_palindrome(test_str_2)
+        times_worst.append(time.perf_counter() - start)
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(n_values, times_random, marker='o', label='Случайные строки (O(1))', color='g')
+    plt.plot(n_values, times_worst, marker='s', label='Палиндромы (O(n²))', color='r')
+
+    plt.title('Тест функции палиндром со (сравнением производительности')
+    plt.xlabel('Количество элементов (n)')
+    plt.ylabel('Время выполнения (секунды)')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
