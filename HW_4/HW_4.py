@@ -140,3 +140,47 @@ if __name__ == "__main__":
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
     plt.show()
+
+
+# Задача №4.
+# Напишите функцию recursive_max, которая принимает на вход массив элементов и возвращает
+# максимальный элемент массива. Если переданный на вход массив пустой, функции должны
+# возвращать 0. Используйте рекурсивный подход.
+
+def recursive_max(arr: list[int | float]) -> int | float:
+    if not isinstance(arr, list): raise TypeError("Нужен список")
+    if not arr: return 0
+
+    if len(arr) == 1:
+        return arr[0]
+    if arr[0] > arr[1]:
+        arr.pop(1)
+    else:
+        arr.pop(0)
+
+    return recursive_max(arr)
+
+
+# O(n) = 1 + 1 + 1 + 1 + n * (n - 1) => O(n2)
+
+if __name__ == "__main__":
+
+    n_values = [10, 50, 100, 200, 400, 500, 1000, 2000, 4000, 7000, 9000]
+    times = []
+
+    for n in n_values:
+        test_arr = [random.randint(0, 1000) for _ in range(n)]
+        start_time = time.perf_counter()
+        recursive_max(test_arr)
+        end_time = time.perf_counter()
+
+        times.append(end_time - start_time)
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+
+    plt.title('Тест функции max с рекурсией')
+    plt.xlabel('Количество элементов (n)')
+    plt.ylabel('Время выполнения (секунды)')
+    plt.grid(True)
+    plt.show()
