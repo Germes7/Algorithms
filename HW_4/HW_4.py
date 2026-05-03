@@ -47,3 +47,56 @@ if __name__ == "__main__":
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
     plt.show()
+
+
+# Задача №2. Сортировка выбором + подсчет операций.
+# Напишите функцию, реализующую сортировку методом “Выбора” (простых перестановок), но модифицируйте её так,
+# чтобы подсчитывать количество операций сравнения и обмена элементов, и возвращать эти значения вместе
+# с отсортированным массивом.
+
+def choice_sort(arr: list[int], key=lambda x: x, order_by=lambda x, y: x < y) -> tuple[list[int], int, int]:
+    if not isinstance(arr, list): raise TypeError("Нужен массив")
+    if not arr: raise ValueError("Массив не должен быть пустым")
+
+    lenth = len(arr)
+    count_comparison = 0
+    count_exchange = 0
+    for i in range(lenth - 1):
+        i_min = i
+
+        for j in range(i + 1, lenth):
+            count_comparison += 1
+
+            if order_by(key(arr[j]), key(arr[i_min])):
+                i_min = j
+
+        if i_min != i:
+            arr[i], arr[i_min] = arr[i_min], arr[i]
+        count_exchange += 1
+
+    return (arr, count_comparison, count_exchange)
+
+
+# O(n) = 1 + 1 + 1 + 1 + 1 + 1 + 1 + (n2 - 1) + 1 + (n2 + 1) + 1 + 1 + 1 + 1 + 1 => O(n2)
+
+if __name__ == "__main__":
+
+    n_values = [10, 100, 1000, 2000, 2500, 5000]
+    times = []
+
+    for n in n_values:
+        test_arr = [random.randint(0, 1000) for _ in range(n)]
+        start_time = time.perf_counter()
+        choice_sort(test_arr)
+        end_time = time.perf_counter()
+
+        times.append(end_time - start_time)
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+
+    plt.title('Тест сортировки методом "Выбора"')
+    plt.xlabel('Количество элементов (n)')
+    plt.ylabel('Время выполнения (секунды)')
+    plt.grid(True)
+    plt.show()
