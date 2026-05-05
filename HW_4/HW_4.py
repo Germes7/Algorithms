@@ -47,7 +47,7 @@ if __name__ == "__main__":
     plt.xlabel('Количество элементов (n)')
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
-    plt.show()
+    #plt.show()
 
 
 # Задача №2. Сортировка выбором + подсчет операций.
@@ -100,7 +100,7 @@ if __name__ == "__main__":
     plt.xlabel('Количество элементов (n)')
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
-    plt.show()
+    #plt.show()
 
 
 # Задача №3.
@@ -139,7 +139,7 @@ if __name__ == "__main__":
     plt.xlabel('Количество элементов (n)')
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
-    plt.show()
+    #plt.show()
 
 
 # Задача №4.
@@ -183,7 +183,7 @@ if __name__ == "__main__":
     plt.xlabel('Количество элементов (n)')
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
-    plt.show()
+    #plt.show()
 
 
 # Задача №5.
@@ -227,7 +227,7 @@ if __name__ == "__main__":
     plt.xlabel('Количество элементов (n)')
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
-    plt.show()
+    #plt.show()
 
 
 # Задача №6. Переворот строки.
@@ -270,7 +270,7 @@ if __name__ == "__main__":
     plt.xlabel('Количество элементов (n)')
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
-    plt.show()
+    #plt.show()
 
 
 # Задача №7. Проверка палиндрома.
@@ -322,5 +322,46 @@ if __name__ == "__main__":
     plt.xlabel('Количество элементов (n)')
     plt.ylabel('Время выполнения (секунды)')
     plt.legend()
+    plt.grid(True)
+    #plt.show()
+
+
+# Задача №8. Числа Фибоначчи.
+# Напишите функцию fibonacci, которая принимает на вход целое неотрицательное число n
+# и возвращает n -е число в последовательности Фибоначчи.
+# Используйте рекурсивный подход. Если переданное на вход число равно нулю, функция должна возвращать 0.
+
+def fibonacci(n: int) -> int:
+    if not isinstance(n, int): raise TypeError("Требуется целое число")
+    if n < 0: raise ValueError("Требуется неотрицательное число")
+
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+
+# O(n) = O(2**n) -не разобрался как прописать эту хрень, ИИ дал ответ по нотации.
+
+if __name__ == "__main__":
+
+    n_values = [2, 5, 10, 15, 20, 25, 30, 35, 40]
+    times = []
+
+    for n in n_values:
+        start_time = time.perf_counter()
+        fibonacci(n)
+        end_time = time.perf_counter()
+
+        times.append(end_time - start_time)
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(n_values, times, marker='o', linestyle='-', color='b')
+
+    plt.title('Тест функции Число Фибоначчи с рекурсией')
+    plt.xlabel('Количество элементов (n)')
+    plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
     plt.show()
