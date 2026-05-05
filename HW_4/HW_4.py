@@ -47,7 +47,7 @@ if __name__ == "__main__":
     plt.xlabel('Количество элементов (n)')
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
-    #plt.show()
+    plt.show()
 
 
 # Задача №2. Сортировка выбором + подсчет операций.
@@ -100,7 +100,7 @@ if __name__ == "__main__":
     plt.xlabel('Количество элементов (n)')
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
-    #plt.show()
+    plt.show()
 
 
 # Задача №3.
@@ -139,7 +139,7 @@ if __name__ == "__main__":
     plt.xlabel('Количество элементов (n)')
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
-    #plt.show()
+    plt.show()
 
 
 # Задача №4.
@@ -183,7 +183,7 @@ if __name__ == "__main__":
     plt.xlabel('Количество элементов (n)')
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
-    #plt.show()
+    plt.show()
 
 
 # Задача №5.
@@ -227,7 +227,7 @@ if __name__ == "__main__":
     plt.xlabel('Количество элементов (n)')
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
-    #plt.show()
+    plt.show()
 
 
 # Задача №6. Переворот строки.
@@ -270,7 +270,7 @@ if __name__ == "__main__":
     plt.xlabel('Количество элементов (n)')
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
-    #plt.show()
+    plt.show()
 
 
 # Задача №7. Проверка палиндрома.
@@ -323,7 +323,7 @@ if __name__ == "__main__":
     plt.ylabel('Время выполнения (секунды)')
     plt.legend()
     plt.grid(True)
-    #plt.show()
+    plt.show()
 
 
 # Задача №8. Числа Фибоначчи.
@@ -362,6 +362,48 @@ if __name__ == "__main__":
 
     plt.title('Тест функции Число Фибоначчи с рекурсией')
     plt.xlabel('Количество элементов (n)')
+    plt.ylabel('Время выполнения (секунды)')
+    plt.grid(True)
+    plt.show()
+
+
+# Задача №9. Нахождение суммы цифр числа.
+# Напишите функцию sum_of_digits, которая принимает на вход целое число и возвращает сумму его цифр.
+# Используйте рекурсивный подход. Если переданное на вход число равно нулю, функция должна возвращать 0.
+
+def sum_of_digits(n: int) -> int:
+    if not isinstance(n, int): raise TypeError("Нужно целое число")
+    if n == 0:
+        return 0
+
+    if n < 0:
+        n = abs(n)
+
+    num = n % 10
+    remainder = n // 10
+
+    return num + sum_of_digits(remainder)
+
+
+# O(n) = 1 + 1 + 1 + 1 + 1 + 1 + 1 + (n//10) => O(log n)
+
+if __name__ == "__main__":
+
+    digit_counts = [10, 500, 1000, 1500, 2000, 2500]
+    times = []
+
+    for d in digit_counts:
+        big_number = int('9' * d)
+        start_time = time.perf_counter()
+        sum_of_digits(big_number)
+        end_time = time.perf_counter()
+        times.append(end_time - start_time)
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(digit_counts, times, marker='o', linestyle='-', color='b')
+
+    plt.title('Зависимость времени от цифр (log n)')
+    plt.xlabel('Количество цифр в числе')
     plt.ylabel('Время выполнения (секунды)')
     plt.grid(True)
     plt.show()
