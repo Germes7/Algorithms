@@ -73,7 +73,7 @@ def choice_sort(arr: list[int], key=lambda x: x, order_by=lambda x, y: x < y) ->
 
         if i_min != i:
             arr[i], arr[i_min] = arr[i_min], arr[i]
-        count_exchange += 1
+            count_exchange += 1
 
     return (arr, count_comparison, count_exchange)
 
