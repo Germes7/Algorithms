@@ -1,5 +1,6 @@
 from .HW_4 import bubble_sort
 import pytest
+from hypothesis import given, strategies as st
 
 def test_bubble_sort_incorrect_list():
 
@@ -92,3 +93,19 @@ def test_bubble_sort_border_4(array_7):
 
 def test_bubble_sort_border_5():
     assert bubble_sort([1, 0]) == [0, 1]
+
+# Читал статью про Hypothesis, потом прогнал через ИИ полученные "знания".
+# Штука оказалась занятной и заинтересовала своей возможностью расширения тестов.
+# Ниже код, честно спизже..ный у ИИ:
+
+# Генерируем списки (lists) целых чисел (integers).
+@given(st.lists(st.integers()))
+def test_bubble_sort_property(random_list):
+    # 1. Делаем копию, так как пузырек обычно меняет список "на месте":
+    arr_to_sort = random_list.copy()
+
+    # 2. Запускаем "пузырек":
+    result = bubble_sort(arr_to_sort)
+
+    # 3. Проверяем свойство: наш результат должен быть равен эталонному sorted()
+    assert result == sorted(random_list)
